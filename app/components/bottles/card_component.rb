@@ -4,7 +4,7 @@ module Bottles
       @image = bottle.image_url
       @name = bottle.name
       @rating = bottle.expert_rating
-      @price = bottle.prices.last.value
+      @price = bottle.most_recent_price
       @tags = bottle.tags
     end
   end
