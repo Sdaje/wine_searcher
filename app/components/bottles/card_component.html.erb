@@ -1,16 +1,16 @@
-<div class="card border-light text-bg-light m-2">
-  <img src= <%= @image %> class="card-img-top" alt="bottle">
-  <div class="card-body">
-    <p class="card-text"><%= @name %></p>
+<div class='card border-light text-bg-light m-2'>
+  <img src= <%= @image %> class='card-img-top' alt='bottle'>
+  <div class='card-body'>
+    <p class='card-text'><%= @name %></p>
   </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item bg-light">
+  <ul class='list-group list-group-flush'>
+    <li class='list-group-item bg-light'>
       Robert Parker WA rating: <%= render(BadgeComponent.new(color: 'dark', label: @rating.to_s)) %>
     </li>
-    <li class="list-group-item bg-light">
+    <li class='list-group-item bg-light'>
       Price: <%= @price %>€
     </li>
-    <li class="list-group-item bg-light">
+    <li class='list-group-item bg-light'>
       Details: <%= render(Bottles::TagsComponent.new(tags: @tags)) %>
     </li>
   </ul>
