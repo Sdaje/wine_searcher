@@ -1,0 +1,10 @@
+<span class='input-group-text ms-2'><%= @label %></span>
+<%= text_field_tag @field_tag,
+  params[@field_tag],
+  class: 'form-control',
+  placeholder: @placeholder,
+  data: {
+    search_bottles_target: @target,
+    action: 'keyup->search-bottles#update'
+  }
+%>

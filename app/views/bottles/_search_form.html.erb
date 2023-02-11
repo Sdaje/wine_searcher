@@ -1,0 +1,33 @@
+<%= form_with(
+  url: root_path,
+  method: :get,
+  html: {
+    class: 'mb-3',
+    data: {
+      search_bottles_target: 'form',
+      action: 'submit->search-bottles#reset_search'}
+  }
+) do %>
+  <div class='input-group mb-3'>
+    <%= render Bottles::SearchInputComponent.new(
+      label: 'Find bottles',
+      field_tag: :search,
+      placeholder: 'ex. Red wine Bordeaux / Haut Brion'
+    ) %>
+  </div>
+  <div class='input-group mb-3'>
+    <%= render Bottles::SearchInputComponent.new(
+      label: 'Minimum price',
+      field_tag: :min_price,
+      placeholder: 'ex: 20'
+    ) %>
+    <%= render Bottles::SearchInputComponent.new(
+      label: 'Maximum price',
+      field_tag: :max_price,
+      placeholder: 'ex: 500'
+    ) %>
+  </div>
+  <div class='d-grid gap-2 d-md-flex justify-content-md-end'>
+    <%= submit_tag 'Reset Search', class: 'btn btn-secondary' %>
+  </div>
+<% end %>

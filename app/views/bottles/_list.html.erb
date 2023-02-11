@@ -1,0 +1,7 @@
+<div class='row' data-search-bottles-target='list' >
+  <% bottles.each do |bottle| %>
+    <div class='col-md-3 col-sm-6'>
+      <%= render(Bottles::CardComponent.new(bottle:)) %>
+    </div>
+  <% end %>
+</div>

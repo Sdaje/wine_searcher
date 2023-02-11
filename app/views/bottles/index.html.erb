@@ -1,9 +1,4 @@
-<div class="container mt-5">
-  <div class="row">
-    <% @bottles.each do |bottle| %>
-      <div class="col-md-3 col-sm-6">
-        <%= render(Bottles::CardComponent.new(bottle:)) %>
-      </div>
-    <% end %>
-  </div>
+<div class='container mt-5' data-controller='search-bottles' >
+  <%= render('search_form') %>
+  <%= render('list', bottles: @bottles) %>
 </div>
