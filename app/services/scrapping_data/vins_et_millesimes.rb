@@ -22,7 +22,7 @@ module ScrappingData
 
     def price_infos(element)
       {
-        value: find_value_with_regex(element.search('.price').text, /(.*)€.*TTC/).to_f,
+        value: find_value_with_regex(element.search('.price').text, /(.*)€.*TTC/).delete(' ').to_f,
         website: element.search('.product_img_link').attribute('href').value
       }
     end
