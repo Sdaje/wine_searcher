@@ -20,7 +20,7 @@ class Bottle < ApplicationRecord
   class << self
     def filter_and_order_bottles_with(args = {})
       bottles = define_bottles(args[:search])
-      return bottles if args[:min_price].nil? || args[:max_price].nil?
+      return bottles if args[:min_price].nil? && args[:max_price].nil?
 
       filter_bottles_by_prices(bottles, args[:min_price].to_f, args[:max_price].to_f)
     end
