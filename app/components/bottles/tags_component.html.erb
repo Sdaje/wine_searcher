@@ -1,0 +1,3 @@
+<% @tags.each do |tag| %>
+  <%= render(BadgeComponent.new(color: tag_color(tag), label: tag.value)) %>
+<% end %>
