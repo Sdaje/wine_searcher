@@ -10,16 +10,18 @@ class Bottle < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validates :expert_rating, presence: true, numericality: { only_integer: true, in: (1..100) }
 
-  # PG Search
+  # Scope
   pg_search_scope :search_by_name_and_tags,
                   against: :name,
                   associated_against: { tags: :value },
                   using: { tsearch: { prefix: true } }
+  scope :all_bottles_ordered_by_ratings, -> { all.order(expert_rating: :desc) }
+  scope :search_bottles_ordered_by_ratings, ->(search) { search_by_name_and_tags(search).order(expert_rating: :desc) }
 
   # Class
   class << self
     def filter_and_order_bottles_with(args = {})
-      bottles = define_bottles(args[:search])
+      bottles = define_bottles_ordered_by_ratings(args[:search])
       return bottles if args[:min_price].nil? && args[:max_price].nil?
 
       filter_bottles_by_prices(bottles, args[:min_price].to_f, args[:max_price].to_f)
@@ -27,16 +29,8 @@ class Bottle < ApplicationRecord
 
     private
 
-    def define_bottles(search)
+    def define_bottles_ordered_by_ratings(search)
       search.present? ? search_bottles_ordered_by_ratings(search) : all_bottles_ordered_by_ratings
-    end
-
-    def search_bottles_ordered_by_ratings(search)
-      search_by_name_and_tags(search).order(expert_rating: :desc)
-    end
-
-    def all_bottles_ordered_by_ratings
-      all.order(expert_rating: :desc)
     end
 
     def filter_bottles_by_prices(bottles, min_price, max_price)
