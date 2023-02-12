@@ -34,10 +34,6 @@ module ScrappingData
       }
     end
 
-    def find_value_with_regex(search_string, regex)
-      search_string.match?(regex) ? search_string.match(regex)[1] : nil
-    end
-
     def prod_desc(element)
       element.search('.product-desc').text
     end

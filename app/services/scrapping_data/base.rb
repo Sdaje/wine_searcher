@@ -18,5 +18,9 @@ module ScrappingData
     def html_search
       raise NotImplementedError, "#{self.class} did not define method ##{__method__}"
     end
+
+    def find_value_with_regex(search_string, regex)
+      search_string.match?(regex) ? search_string.match(regex)[1] : nil
+    end
   end
 end
