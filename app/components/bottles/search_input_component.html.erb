@@ -1,7 +1,7 @@
-<span class='input-group-text ms-2'><%= @label %></span>
+<span class='input-group-text bg-danger text-light  border-danger ms-2'><%= @label %></span>
 <%= text_field_tag @field_tag,
   params[@field_tag],
-  class: 'form-control',
+  class: 'form-control border-danger',
   placeholder: @placeholder,
   data: {
     search_bottles_target: @target,
