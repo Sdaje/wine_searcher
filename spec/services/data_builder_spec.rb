@@ -27,7 +27,7 @@ RSpec.describe DataBuilder do
       let(:tag) { create(:tag) }
 
       [['Bottle', 0], ['Tag', 0], ['Price', 1]].each do |klass, count_change|
-        it "#{count_change.zero? ? '' : 'does not'} save #{klass}" do
+        it "#{count_change.zero? ? 'does not' : ''} save #{klass}" do
           source_data.first[:bottle][:name] = bottle.name
           source_data.first[:tags] = { tag.category => tag.value }
           expect { subject }.to change { klass.constantize.count }.by(count_change)
