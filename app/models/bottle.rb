@@ -15,7 +15,7 @@ class Bottle < ApplicationRecord
                   against: :name,
                   associated_against: { tags: :value },
                   using: { tsearch: { prefix: true } }
-  scope :all_bottles_ordered_by_ratings, -> { all.order(expert_rating: :desc) }
+  scope :all_bottles_ordered_by_ratings, -> { order(expert_rating: :desc) }
   scope :search_bottles_ordered_by_ratings, ->(search) { search_by_name_and_tags(search).order(expert_rating: :desc) }
 
   # Class
