@@ -11,8 +11,7 @@ class DataBuilder
 
   def find_or_generate_instances_from!(element)
     bottle = Bottle.find_by(name: element[:bottle][:name]).presence || Bottle.new(element[:bottle])
-    price = Price.new(element[:price])
-    price.bottle = bottle
+    price = Price.new(element[:price].merge(bottle:))
     return if bottle.invalid? || price.invalid?
 
     element[:tags].each { |category, value| find_or_generate_tag_from!(category, value, bottle) }
